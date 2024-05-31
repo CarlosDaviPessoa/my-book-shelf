@@ -1,11 +1,26 @@
 const express = require('express');
-const { register, login, getAllUsers, updateUser, deleteUser } = require('../controllers/userController');
+const User = require('../models/User');
 const router = express.Router();
 
-router.post('/register', register);
-router.post('/login', login);
-router.get('/users', getAllUsers);
-router.put('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
+// Rota para criar um novo usuário
+router.post('/', async (req, res) => {
+    try {
+        const newUser = new User(req.body);
+        await newUser.save();
+        res.status(201).send(newUser);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+});
+
+// Rota para obter todos os usuários
+router.get('/', async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.send(users);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
 
 module.exports = router;

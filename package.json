@@ -1,16 +1,15 @@
 {
   "name": "my-book-shelf",
   "version": "1.0.0",
-  "description": "A digital bookshelf application",
-  "main": "index.js",
+  "description": "Aplicação web de estante de livros digital",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.13.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
+    "mongoose": "^5.11.15",
+    "dotenv": "^8.2.0",
+    "body-parser": "^1.19.0"
   }
 }
