@@ -1,3 +1,17 @@
-module.exports = {
-    url: 'mongodb+srv://carlosdavipessoa:131121Md@@cluster0.k9zbjjv.mongodb.net/'
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
 };
+
+module.exports = connectDB;
